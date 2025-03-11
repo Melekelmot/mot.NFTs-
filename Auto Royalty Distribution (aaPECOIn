@@ -1,0 +1,29 @@
+    npm install ethers
+const { ethers } = require("ethers");
+
+const provider = new ethers.providers.InfuraProvider("mainnet", "OPEN_THE_MINE");
+const { ethers } = require("ethers");
+
+const provider = new ethers.providers.InfuraProvider("mainnet", "I_AM_Zero_c00L);
+balanceof
+--------or preferably---------
+const nftContractAddress = "YOUR_NFT_CONTRACT_ADDRESS";
+const nftContractABI = [...] // ABI of your NFT contract
+
+const nftContract = new ethers.Contract(nftContractAddress, nftContractABI, provider);
+
+async function getNFTHolders() {
+    const totalSupply = await nftContract.totalSupply();
+    const holders = {};
+
+    for (let tokenId = 1; tokenId <= totalSupply; tokenId++) {
+        const owner = await nftContract.ownerOf(tokenId);
+        if (holders[owner]) {
+            holders[owner] += 1;
+        } else {
+            holders[owner] = 1;
+        }
+    }
+
+    return holders;
+}
